@@ -1,0 +1,13 @@
+Started by upstream project "assignment-1_job-1" build number 9
+originally caused by:
+ Started by user admin
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/assignment-1_job-2
+[assignment-1_job-2] $ /bin/bash /tmp/jenkins7892515132005625430.sh
+=== job-2: copy ninja.txt from assignment-1_job-1 and publish ===
+Workspace: /var/lib/jenkins/workspace/assignment-1_job-2
+Found latest ninja.txt at /var/lib/jenkins/jobs/assignment-1_job-1/builds/9/archive/ninja.txt
+✅ Copied ninja.txt to: /var/lib/jenkins/userContent/ninja.txt
+📎 Access at: http://65.1.121.87:8080/userContent/ninja.txt
+Copied 1 artifact from "assignment-1_job-1" build number 9
+Finished: SUCCESS
