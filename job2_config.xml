@@ -1,0 +1,70 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <jenkins.triggers.ReverseBuildTrigger>
+      <spec></spec>
+      <upstreamProjects>assignment-1_job-1</upstreamProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </jenkins.triggers.ReverseBuildTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+set -euo pipefail
+
+ART=&quot;ninja.txt&quot;
+JOB1=&quot;assignment-1_job-1&quot;
+USERCONTENT_DIR=&quot;${JENKINS_HOME:-/var/lib/jenkins}/userContent&quot;
+
+echo &quot;=== job-2: copy $ART from $JOB1 and publish ===&quot;
+echo &quot;Workspace: ${WORKSPACE:-$(pwd)}&quot;
+
+# Always take latest build of job-1
+SRC=&quot;$(ls -1dt /var/lib/jenkins/jobs/$JOB1/builds/*/archive/$ART 2&gt;/dev/null | head -n1 || true)&quot;
+
+if [[ -n &quot;$SRC&quot; &amp;&amp; -f &quot;$SRC&quot; ]]; then
+  echo &quot;Found latest $ART at $SRC&quot;
+  cp -f &quot;$SRC&quot; &quot;$WORKSPACE/$ART&quot;
+else
+  echo &quot;❌ ERROR: $ART not found in any recent build of $JOB1&quot;
+  exit 1
+fi
+
+# Publish to userContent
+mkdir -p &quot;$USERCONTENT_DIR&quot;
+install -m 0644 &quot;$WORKSPACE/$ART&quot; &quot;$USERCONTENT_DIR/$ART&quot;
+
+echo &quot;✅ Copied $ART to: $USERCONTENT_DIR/$ART&quot;
+echo &quot;📎 Access at: ${JENKINS_URL%/}/userContent/$ART&quot;
+</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@770.va_6c69e063442">
+      <project>assignment-1_job-1</project>
+      <filter>ninja.txt</filter>
+      <target>.</target>
+      <includeBuildNumberInTargetPath>false</includeBuildNumberInTargetPath>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>true</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
