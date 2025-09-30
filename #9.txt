@@ -1,0 +1,11 @@
+Started by user admin
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/assignment-1_job-1
+[assignment-1_job-1] $ /bin/bash /tmp/jenkins11436055848154833173.sh
+creating file for ninja:vivek
+vivek from devops ninja
+Archiving artifacts
+[Slack Notifications] found #8 as previous completed, non-aborted build
+[Slack Notifications] will send OnSuccessNotification because build matches and user preferences allow it
+Triggering a new build of assignment-1_job-2
+Finished: SUCCESS
