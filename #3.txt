@@ -1,0 +1,42 @@
+Started by user admin
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/assignment-1
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/assignment-1/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/vr7474452/jenkins-1.git # timeout=10
+Fetching upstream changes from https://github.com/vr7474452/jenkins-1.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- https://github.com/vr7474452/jenkins-1.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Seen branch in repository origin/main
+Seen 1 remote branch
+ > git show-ref --tags -d # timeout=10
+Checking out Revision cbc6b23a324946b7d21957bfe0fae596050eb6b4 (origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f cbc6b23a324946b7d21957bfe0fae596050eb6b4 # timeout=10
+Commit message: "Initial commit"
+ > git rev-list --no-walk cbc6b23a324946b7d21957bfe0fae596050eb6b4 # timeout=10
+[assignment-1] $ /bin/bash /tmp/jenkins5276070805025892328.sh
+=== Creating branch: feature_branch ===
+Switched to a new branch 'feature_branch'
+=== Listing all branches ===
+* feature_branch
+  main
+  remotes/origin/main
+=== Merging feature_branch into main ===
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+Already up to date.
+=== Rebasing feature_branch onto main ===
+Switched to branch 'feature_branch'
+Current branch feature_branch is up to date.
+=== Deleting feature_branch ===
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+Deleted branch feature_branch (was cbc6b23).
+✅ All Git operations completed successfully
+[Slack Notifications] found #2 as previous completed, non-aborted build
+[Slack Notifications] will send OnSuccessNotification because build matches and user preferences allow it
+Finished: SUCCESS
